@@ -4,8 +4,8 @@ import ScrollReveal from './ScrollReveal';
 import Container from './Container';
 
 const ServiceCard = ({ title, description, icon }) => (
-    <div className="p-8 bg-white border border-soft-blue rounded-xl hover:shadow-xl transition-shadow duration-300">
-        <div className="w-12 h-12 text-primary-blue mb-6">
+    <div className="p-8 bg-white border border-primary-teal/10 rounded-xl hover:shadow-xl transition-shadow duration-300">
+        <div className="w-12 h-12 text-primary-orange mb-6">
             {icon}
         </div>
         <h3 className="text-sm font-heading text-primary-navy mb-4 tracking-tighter">{title}</h3>
@@ -49,8 +49,8 @@ const Services = () => {
             <Container>
                 <ScrollReveal>
                     <div className="max-w-3xl mb-16">
-                        <h2 className="text-sm font-bold text-primary-blue uppercase tracking-widest mb-3">Our Expertise</h2>
-                        <h3 className="text-xl lg:text-2xl font-heading text-primary-navy mb-6 tracking-tighter leading-relaxed">
+                        <h2 className="text-sm font-bold text-primary-orange uppercase tracking-widest mb-3">Our Expertise</h2>
+                        <h3 className="text-xl lg:text-2xl font-heading font-extrabold text-primary-navy mb-6 tracking-tighter leading-tight">
                             Comprehensive Web Solutions for Growth
                         </h3>
                         <p className="text-lg text-mid-slate">

@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from './Section';
 import Container from './Container';
-import contactHeader from '../assets/pictures/Contactheaderimage..jpg';
+import contactHeader from '../assets/pictures/contactheaderimage.jpg';
 import ScrollReveal from './ScrollReveal';
 
 const ContactIcon = ({ href, icon, label, brandColor }) => (
@@ -9,7 +9,7 @@ const ContactIcon = ({ href, icon, label, brandColor }) => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 flex items-center justify-center rounded-xl border border-soft-blue transition-all duration-300 group relative overflow-hidden"
+        className="w-14 h-14 flex items-center justify-center rounded-xl border border-primary-teal transition-all duration-300 group relative overflow-hidden"
         aria-label={label}
         style={{ color: brandColor }}
     >
@@ -56,7 +56,7 @@ const Contact = () => {
 
     return (
         <Section id="contact" background="white" className="pb-0!">
-            <div className="relative h-64 overflow-hidden mb-16">
+            <div className="relative h-56 sm:h-64 overflow-hidden mb-16">
                 <img
                     src={contactHeader}
                     alt="Contact us"
@@ -64,7 +64,7 @@ const Contact = () => {
                 />
                 <div className="absolute inset-0 bg-primary-navy/60 flex items-center justify-center">
                     <ScrollReveal>
-                        <h2 className="text-2xl lg:text-3xl font-heading text-white tracking-tighter">Get In Touch</h2>
+                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading text-white tracking-tighter">Get In Touch</h2>
                     </ScrollReveal>
                 </div>
             </div>

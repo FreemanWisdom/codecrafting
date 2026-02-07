@@ -26,9 +26,9 @@ const Hero = () => {
             <Container className="relative z-10">
                 <ScrollReveal>
                     <div className="max-w-2xl">
-                        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-heading text-primary-navy leading-[1.6] mb-8 tracking-tighter">
+                        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold text-primary-navy leading-[1.2] mb-8 tracking-tighter">
                             CodeCrafting — <br />
-                            <span className="text-primary-blue">Shaping Your Ideas</span> <br /> Into Reality
+                            <span className="text-primary-orange">Shaping Your Ideas</span> <br /> Into Reality
                         </h1>
                         <p className="text-lg sm:text-xl text-mid-slate mb-10 leading-relaxed max-w-lg">
                             We build fast, clean websites for individuals and small businesses,

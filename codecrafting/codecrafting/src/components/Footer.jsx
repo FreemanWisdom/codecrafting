@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from './Container';
-import logo from '../assets/pictures/Craftlogo.png';
 
 const Footer = () => {
     return (
@@ -8,12 +7,9 @@ const Footer = () => {
             <Container>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="flex flex-col items-center md:items-start">
-                        <img
-                            src={logo}
-                            alt="CodeCrafting"
-                            className="h-20 w-auto mb-4 hover:brightness-110 transition-all duration-300"
-                            style={{ mixBlendMode: 'screen' }}
-                        />
+                        <span className="text-2xl font-heading font-extrabold tracking-tighter text-white mb-4 block">
+                            CODE<span className="text-primary-orange">CRAFTING</span>
+                        </span>
                         <p className="text-mid-slate text-sm">Web solutions & practical learning</p>
                     </div>
 

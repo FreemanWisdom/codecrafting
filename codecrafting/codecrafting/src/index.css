@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: 'Syne';
+  src: url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+}
+
+@font-face {
+  font-family: 'Emblema One';
+  src: url('https://fonts.googleapis.com/css2?family=Emblema+One&display=swap');
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap');
+}
+
+@font-face {
   font-family: 'Press Start 2P';
   src: url('./assets/fonts/Press_Start_2P (1)/PressStart2P-Regular.ttf') format('truetype');
   font-weight: normal;
@@ -9,15 +24,17 @@
 }
 
 @theme {
-  --color-primary-navy: #0A192F;
-  --color-primary-blue: #3B82F6;
-  --color-secondary-blue: #60A5FA;
-  --color-soft-blue: #F0F7FF;
+  --color-primary-teal: #2B5A6C;
+  --color-primary-orange: #F47621;
+  --color-light-teal: #95B3BC;
+  --color-primary-navy: #0F172A;
   --color-deep-slate: #1E293B;
   --color-mid-slate: #64748B;
+  --color-soft-blue: #F8FAFC;
 
   --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Press Start 2P', cursive;
+  --font-heading: 'Syne', sans-serif;
+  --font-mono: 'Press Start 2P', cursive;
 }
 
 :root {
