@@ -29,7 +29,7 @@ const Footer = () => {
                     <div className="text-sm text-mid-slate text-center md:text-right">
                         <div className="flex justify-center md:justify-end gap-6">
                             <a href="https://wa.me/2349071537759" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp</a>
-                            <a href="mailto:codecrafting@gmail.com" className="hover:text-white transition-colors">Email</a>
+                            <a href="mailto:ccraftingcc@gmail.com" className="hover:text-white transition-colors">Email</a>
                         </div>
                     </div>
                 </div>
