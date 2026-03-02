@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import ScrollReveal from '../components/ScrollReveal';
 import BackButton from '../components/BackButton';
 import aboutBg from '../assets/pictures/Corporate Globe Wallpaper for Decor.jpg';
+import TechStack from '../components/TechStack';
 
 const AboutPage = () => {
     useEffect(() => {
@@ -110,6 +111,9 @@ const AboutPage = () => {
                     </ScrollReveal>
                 </Container>
             </Section>
+
+            {/* Tech Stack */}
+            <TechStack />
 
             {/* CTA */}
             <Section background="navy">
