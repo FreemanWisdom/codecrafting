@@ -7,12 +7,14 @@ import Section from '../components/Section';
 import ScrollReveal from '../components/ScrollReveal';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
+import { submitToWaitlist } from '../utils/waitlist';
 import educationBg from '../assets/pictures/Learnslideimg5.jpg';
 
 const EducationPage = () => {
     const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '' });
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [feedback, setFeedback] = useState({ type: '', message: '' });
 
     useEffect(() => {
         document.title = 'Education — CodeCrafting';
@@ -22,16 +24,55 @@ const EducationPage = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        if (isSubmitting) return;
 
-        // Simulate submission
-        setTimeout(() => {
+        setIsSubmitting(true);
+        setFeedback({ type: '', message: '' });
+
+        try {
+            const result = await submitToWaitlist({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.whatsapp,
+            });
+
+            if (result.success) {
+                setSubmitted(true);
+                setFeedback({
+                    type: 'success',
+                    message: result.message || "You're on the waitlist.",
+                });
+                setFormData({ name: '', email: '', whatsapp: '' });
+                return;
+            }
+
+            if (result.status === 409) {
+                setFeedback({
+                    type: 'info',
+                    message: "You're already on the waitlist!",
+                });
+            } else if (result.status === 400) {
+                setFeedback({
+                    type: 'error',
+                    message: result.message || 'Please check your details and try again.',
+                });
+            } else {
+                setFeedback({
+                    type: 'error',
+                    message: 'Something went wrong.',
+                });
+            }
+        } catch (error) {
+            console.error('Waitlist submission failed:', error);
+            setFeedback({
+                type: 'error',
+                message: 'Something went wrong.',
+            });
+        } finally {
             setIsSubmitting(false);
-            setSubmitted(true);
-            setFormData({ name: '', email: '', whatsapp: '' });
-        }, 1200);
+        }
     };
 
     return (
@@ -146,7 +187,7 @@ const EducationPage = () => {
                                     </div>
                                     <h3 className="text-3xl font-heading font-bold text-white mb-4">You're in the Loop.</h3>
                                     <p className="text-white/70 text-lg leading-relaxed max-w-md mx-auto">
-                                        We'll notify you as soon as the first cohort opens. Get ready to master the craft of web engineering.
+                                        {feedback.message || "We'll notify you as soon as the first cohort opens. Get ready to master the craft of web engineering."}
                                     </p>
                                 </div>
                             ) : (
@@ -162,6 +203,7 @@ const EducationPage = () => {
                                                 name="name"
                                                 value={formData.name}
                                                 onChange={handleChange}
+                                                disabled={isSubmitting}
                                                 required
                                                 placeholder="John Doe"
                                                 className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/20 focus:outline-none focus:border-primary-orange/50 transition-all duration-300"
@@ -177,6 +219,7 @@ const EducationPage = () => {
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleChange}
+                                                disabled={isSubmitting}
                                                 required
                                                 placeholder="john@example.com"
                                                 className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/20 focus:outline-none focus:border-primary-orange/50 transition-all duration-300"
@@ -193,6 +236,7 @@ const EducationPage = () => {
                                             name="whatsapp"
                                             value={formData.whatsapp}
                                             onChange={handleChange}
+                                            disabled={isSubmitting}
                                             placeholder="+234..."
                                             className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/20 focus:outline-none focus:border-primary-orange/50 transition-all duration-300"
                                         />
@@ -211,6 +255,21 @@ const EducationPage = () => {
                                             'Join the Elite Waitlist'
                                         )}
                                     </button>
+                                    {feedback.message && (
+                                        <p
+                                            role="status"
+                                            aria-live="polite"
+                                            className={`text-sm text-center font-semibold ${
+                                                feedback.type === 'success'
+                                                    ? 'text-green-400'
+                                                    : feedback.type === 'info'
+                                                    ? 'text-blue-300'
+                                                    : 'text-red-400'
+                                            }`}
+                                        >
+                                            {feedback.message}
+                                        </p>
+                                    )}
                                     <p className="text-[10px] font-bold text-white/20 text-center uppercase tracking-[0.2em] mt-6">
                                         Precision. Performance. Privacy.
                                     </p>
