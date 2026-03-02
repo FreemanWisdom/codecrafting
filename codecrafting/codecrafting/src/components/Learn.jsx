@@ -1,4 +1,6 @@
 import React from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Tick01Icon } from '@hugeicons/core-free-icons';
 import Section from './Section';
 import Container from './Container';
 import ScrollReveal from './ScrollReveal';
@@ -7,11 +9,19 @@ import learn2 from '../assets/pictures/Learnslide2.jpg';
 import learn3 from '../assets/pictures/Learnslideimg3.jpg';
 
 const Learn = () => {
-    const learningImages = [learn1, learn2, learn3];
-
     return (
-        <Section id="learn" background="soft">
-            <Container>
+        <Section id="learn" className="relative overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div
+                className="absolute inset-0 z-0 opacity-10"
+                style={{
+                    backgroundImage: `url(${learn3})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            ></div>
+
+            <Container className="relative z-10">
                 <ScrollReveal>
                     <div className="flex flex-col lg:flex-row items-center gap-16">
                         <div className="lg:w-1/2">
@@ -30,7 +40,7 @@ const Learn = () => {
                             <div className="space-y-4 mb-10">
                                 <div className="flex items-start gap-4">
                                     <div className="mt-1 w-5 h-5 text-primary-orange shrink-0">
-                                        <svg fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                                        <HugeiconsIcon icon={Tick01Icon} size={20} strokeWidth={3} />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-primary-navy">Project-Based Learning</h4>
@@ -39,7 +49,7 @@ const Learn = () => {
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <div className="mt-1 w-5 h-5 text-primary-orange shrink-0">
-                                        <svg fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                                        <HugeiconsIcon icon={Tick01Icon} size={20} strokeWidth={3} />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-primary-navy">Modern Tech Stack</h4>

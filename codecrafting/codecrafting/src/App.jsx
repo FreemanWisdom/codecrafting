@@ -1,24 +1,32 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Services from './components/Services'
-import Learn from './components/Learn'
-import Portfolio from './components/Portfolio'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import ServicesPage from './pages/ServicesPage'
+import PortfolioPage from './pages/PortfolioPage'
+import EducationPage from './pages/EducationPage'
+import AboutPage from './pages/AboutPage'
+import FAQsPage from './pages/FAQsPage'
+import SupportPage from './pages/SupportPage'
+import LegalPage from './pages/LegalPage'
+import ContactPage from './pages/ContactPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   return (
-    <div className="min-h-screen font-sans antialiased text-deep-slate bg-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <Learn />
-        <Portfolio />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/education" element={<EducationPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/faqs" element={<FAQsPage />} />
+        <Route path="/support" element={<SupportPage />} />
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   )
 }
 

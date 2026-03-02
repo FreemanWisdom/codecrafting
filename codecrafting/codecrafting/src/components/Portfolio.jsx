@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Cancel01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import Section from './Section';
 import Container from './Container';
 import Button from './Button';
@@ -17,11 +19,9 @@ const ProjectModal = ({ project, onClose }) => {
             <div className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl slide-up">
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 p-2 rounded-full bg-light-teal/20 text-primary-navy hover:bg-soft-blue/40 transition-colors z-10"
+                    className="absolute top-6 right-6 p-2 rounded-full bg-light-teal/20 text-primary-navy hover:bg-primary-orange hover:text-white transition-all duration-300 z-10"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <HugeiconsIcon icon={Cancel01Icon} size={24} />
                 </button>
 
                 <div className="flex flex-col lg:flex-row h-full">
@@ -95,7 +95,9 @@ const Portfolio = () => {
                                         <span className="text-xs font-bold text-primary-orange uppercase tracking-widest">{project.category}</span>
                                         <h4 className="text-base font-heading font-extrabold text-primary-navy mt-2 tracking-tighter">{project.title}</h4>
                                     </div>
-                                    <button className="text-sm font-medium text-primary-orange hover:underline">View Details →</button>
+                                    <button className="text-sm font-bold text-primary-orange hover:gap-2 transition-all flex items-center gap-1">
+                                        View Details <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+                                    </button>
                                 </div>
                             </div>
                         </ScrollReveal>
