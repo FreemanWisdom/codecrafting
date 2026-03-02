@@ -2,6 +2,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const ALLOWED_ORIGIN = Deno.env.get("ALLOWED_ORIGIN") ?? "*";
+const RESEND_FROM_EMAIL =
+  Deno.env.get("RESEND_FROM_EMAIL") ?? "CodeCrafting <onboarding@resend.dev>";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
@@ -66,7 +68,7 @@ Deno.serve(async (req: Request) => {
       }
 
       console.error("Database error:", dbError);
-      return jsonResponse({ error: "Failed to save submission." }, 500);
+      return jsonResponse({ error: dbError.message }, 500);
     }
 
     const resendKey = Deno.env.get("RESEND_API_KEY");
@@ -80,7 +82,7 @@ Deno.serve(async (req: Request) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "CodeCrafting <onboarding@resend.dev>",
+            from: RESEND_FROM_EMAIL,
             to: [email],
             subject: "You're on the waitlist 🎉",
             html: `
@@ -90,6 +92,7 @@ Deno.serve(async (req: Request) => {
                 <p>We’ll notify you when we launch.</p>
               </div>
             `,
+            text: `Welcome, ${name}! You've successfully joined the CodeCrafting waitlist. We'll notify you when we launch.`,
           }),
         });
 
@@ -109,8 +112,11 @@ Deno.serve(async (req: Request) => {
       message: `Thanks ${name}! You're on the waitlist.`,
     });
 
-  } catch (err) {
+  } catch (err: any) {
     console.error("Unexpected error:", err);
-    return jsonResponse({ error: "Unexpected server error." }, 500);
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });

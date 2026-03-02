@@ -39,6 +39,7 @@ export async function submitToWaitlist(payload) {
       status: response.status,
     };
   } catch (error) {
+    console.error("Waitlist request failed:", error);
     return {
       success: false,
       message:

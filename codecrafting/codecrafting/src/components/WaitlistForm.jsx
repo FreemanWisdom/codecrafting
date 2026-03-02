@@ -1,11 +1,10 @@
-// src/components/WaitlistForm.jsx
 import { useState } from "react";
 import { submitToWaitlist } from "../utils/waitlist";
 
 export default function WaitlistForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
-  const [status, setStatus] = useState(null); // null | "loading" | "success" | "duplicate" | "error"
-  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [feedback, setFeedback] = useState({ type: "", message: "" });
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -13,35 +12,69 @@ export default function WaitlistForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("loading");
-    setMessage("");
+    if (isLoading) return;
 
-    const result = await submitToWaitlist(form);
+    setIsLoading(true);
+    setFeedback({ type: "", message: "" });
 
-    if (result.success) {
-      setStatus("success");
-      setMessage(result.message);
-      setForm({ name: "", email: "", phone: "" }); // Reset form
-    } else if (result.status === 409) {
-      setStatus("duplicate");
-      setMessage("You're already on the waitlist! We'll be in touch soon. 😊");
-    } else if (result.status === 400) {
-      setStatus("error");
-      setMessage(result.message); // Show the validation error (e.g., "Invalid phone number")
-    } else {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again later.");
+    try {
+      const result = await submitToWaitlist(form);
+
+      if (result.success) {
+        setFeedback({
+          type: "success",
+          message: result.message || "Successfully joined the waitlist.",
+        });
+        setForm({ name: "", email: "", phone: "" });
+        return;
+      }
+
+      if (result.status === 409) {
+        setFeedback({
+          type: "info",
+          message: "You're already on the waitlist!",
+        });
+      } else if (result.status === 400) {
+        setFeedback({
+          type: "error",
+          message: result.message || "Please check your details and try again.",
+        });
+      } else {
+        setFeedback({
+          type: "error",
+          message: "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      console.error("Waitlist submit failed:", error);
+      setFeedback({
+        type: "error",
+        message: "Something went wrong.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const messageColor =
+    feedback.type === "success"
+      ? "green"
+      : feedback.type === "info"
+        ? "blue"
+        : "red";
+
   return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+    >
       <input
         type="text"
         name="name"
         placeholder="Your full name"
         value={form.name}
         onChange={handleChange}
+        disabled={isLoading}
         required
         minLength={2}
       />
@@ -51,6 +84,7 @@ export default function WaitlistForm() {
         placeholder="your@email.com"
         value={form.email}
         onChange={handleChange}
+        disabled={isLoading}
         required
       />
       <input
@@ -59,15 +93,18 @@ export default function WaitlistForm() {
         placeholder="Phone number (optional)"
         value={form.phone}
         onChange={handleChange}
+        disabled={isLoading}
       />
-      <button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Joining..." : "Join the Waitlist"}
+
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Joining..." : "Join the Waitlist"}
       </button>
 
-      {/* Feedback Messages */}
-      {status === "success"   && <p style={{ color: "green" }}>✅ {message}</p>}
-      {status === "duplicate" && <p style={{ color: "blue" }}>ℹ️ {message}</p>}
-      {status === "error"     && <p style={{ color: "red" }}>❌ {message}</p>}
+      {feedback.message && (
+        <p role="status" aria-live="polite" style={{ color: messageColor }}>
+          {feedback.message}
+        </p>
+      )}
     </form>
   );
 }
