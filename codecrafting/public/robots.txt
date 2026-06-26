@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://codinggroups.com/sitemap.xml

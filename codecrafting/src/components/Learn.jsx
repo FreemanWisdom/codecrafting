@@ -1,0 +1,86 @@
+import React from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Tick01Icon } from '@hugeicons/core-free-icons';
+import Section from './Section';
+import Container from './Container';
+import Reveal from './ScrollReveal';
+import learn1 from '../assets/pictures/Learnslideimg1.jpg';
+import learn2 from '../assets/pictures/Learnslide2.jpg';
+import learn3 from '../assets/pictures/Learnslideimg3.jpg';
+import { optimizeCloudinaryImage } from '../utils/image';
+
+const Learn = () => {
+    return (
+        <Section id="learn" className="relative overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div
+                className="absolute inset-0 z-0 opacity-10"
+                style={{
+                    backgroundImage: `url(${optimizeCloudinaryImage(learn3, 1200)})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            ></div>
+
+            <Container className="relative z-10">
+                <Reveal>
+                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                        <div className="lg:w-1/2">
+                            <div className="inline-block px-4 py-1 bg-primary-orange text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">
+                                Education
+                            </div>
+                            <h2 className="text-2xl lg:text-4xl font-heading font-extrabold text-primary-navy mb-10 tracking-tighter leading-tight">
+                                Practical Web Development for the Modern Era
+                            </h2>
+                            <p className="text-lg text-mid-slate mb-8">
+                                CodingGroups isn't just about building sites; it's about sharing knowledge.
+                                Our upcoming learning platform will focus on practical, project-based skills
+                                that help you build real-world applications independently.
+                            </p>
+
+                            <div className="space-y-4 mb-10">
+                                <div className="flex items-start gap-4">
+                                    <div className="mt-1 w-5 h-5 text-primary-orange shrink-0">
+                                        <HugeiconsIcon icon={Tick01Icon} size={20} strokeWidth={3} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-primary-navy">Project-Based Learning</h4>
+                                        <p className="text-mid-slate">Learn by building actual products, not just watching videos.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="mt-1 w-5 h-5 text-primary-orange shrink-0">
+                                        <HugeiconsIcon icon={Tick01Icon} size={20} strokeWidth={3} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-primary-navy">Modern Tech Stack</h4>
+                                        <p className="text-mid-slate">Master the tools used by industry leaders daily.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6 bg-white border border-primary-orange/20 rounded-xl">
+                                <span className="text-sm font-bold text-primary-orange block mb-2">Coming Soon</span>
+                                <p className="text-sm text-mid-slate">
+                                    We're currently crafting our curriculum. Sign up for our newsletter to be the first to know when we launch.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="lg:w-1/2">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <img src={optimizeCloudinaryImage(learn1, 800)} alt="Student learning modern web development concepts" loading="lazy" className="rounded-xl shadow-lg w-full h-48 sm:h-56 lg:h-64 object-cover" />
+                                <img src={optimizeCloudinaryImage(learn2, 800)} alt="Code editor showing frontend development workflow" loading="lazy" className="rounded-xl shadow-lg w-full h-48 sm:h-56 lg:h-64 object-cover" />
+                                <div className="sm:col-span-2">
+                                    <img src={optimizeCloudinaryImage(learn3, 1000)} alt="Completed student web project interface" loading="lazy" className="rounded-xl shadow-lg w-full h-52 sm:h-56 lg:h-64 object-cover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Reveal>
+            </Container>
+        </Section>
+    );
+};
+
+export default Learn;

@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules and build outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Subdirectory ignores
+codecrafting/node_modules/
+codecrafting/dist/
+codecrafting/dist-ssr/
+codecrafting/*.local
+codecrafting/.env
+
+# Ignore large media/video assets (GitHub 100MB limit)
+*.mkv
+*.mp4
+*.avi
+*.mov
+codecrafting/public/assets/Money Heist/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
