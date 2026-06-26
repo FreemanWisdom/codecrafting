@@ -1,4 +1,5 @@
 {
+  "deno.path": "C:\\Users\\CDMIS-ADMIN\\.deno\\bin\\deno.exe",
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
