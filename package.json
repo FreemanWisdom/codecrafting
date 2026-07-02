@@ -1,0 +1,9 @@
+{
+  "name": "codecrafting-root",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix coding-groups",
+    "build": "npm run build --prefix coding-groups",
+    "start": "npm run start --prefix coding-groups"
+  }
+}
