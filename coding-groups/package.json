@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "vite preview --host 0.0.0.0",
     "lint": "eslint .",
     "preview": "vite preview",
     "reset:admin-password": "node scripts/reset-admin-password.mjs"
