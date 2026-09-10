@@ -9,7 +9,9 @@ export async function submitEmailHandler(payload) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: payload.name?.trim(),
         email: payload.email?.trim(),
+        phone: payload.phone?.trim() || undefined,
         type: payload.type?.trim(),
         message: payload.message?.trim() || undefined,
       }),
