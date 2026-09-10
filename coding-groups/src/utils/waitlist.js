@@ -1,15 +1,44 @@
-import { submitEmailHandler } from "./emailHandler";
+const FUNCTION_URL =
+  import.meta.env.VITE_WAITLIST_FUNCTION_URL ||
+  "https://uwshalogougfxgolnyut.supabase.co/functions/v1/waitlist";
 
 export async function submitToWaitlist(payload) {
-  const result = await submitEmailHandler({
-    email: payload.email,
-    type: "waitlist",
-  });
+  try {
+    const response = await fetch(FUNCTION_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: payload.name?.trim(),
+        email: payload.email?.trim(),
+        phone: payload.phone?.trim() || undefined,
+      }),
+    });
 
-  return {
-    ...result,
-    message: result.success
-      ? "Successfully joined the waitlist."
-      : result.message,
-  };
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {
+      data = {};
+    }
+
+    return {
+      success: response.ok,
+      status: response.status,
+      message:
+        data.message ||
+        data.error ||
+        (response.ok ? "Successfully joined the waitlist." : "Something went wrong."),
+      details: data.details,
+    };
+  } catch (error) {
+    console.error("Waitlist request failed:", error);
+    return {
+      success: false,
+      status: 0,
+      message: "Network error — please check your internet connection and try again.",
+      details: null,
+    };
+  }
 }
