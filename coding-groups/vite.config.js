@@ -9,7 +9,11 @@ export default defineConfig({
     tailwindcss(),
   ],
   preview: {
-    allowedHosts: ['codinggroups.org', 'www.codinggroups.org'],
+    allowedHosts: [
+      'codinggroups.org',
+      'www.codinggroups.org',
+      'codecrafting.pxxl.run',
+    ],
   },
   build: {
     cssCodeSplit: true,
