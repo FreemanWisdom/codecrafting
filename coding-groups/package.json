@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "vite preview --host 0.0.0.0",
+    "start": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
     "lint": "eslint .",
     "preview": "vite preview",
     "reset:admin-password": "node scripts/reset-admin-password.mjs"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^3.1.1",
-    "@hugeicons/react": "^1.1.5",
+    "@hugeicons/react": "^1.1.1",
+    "@hugeicons/react": "^1.1.1",
+    "@hugeicons/core-free-icons": "^3.1.1",
+    "@hugeicons/react": "^1.1.1",
     "@supabase/supabase-js": "^2.98.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
