@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  preview: {
+    allowedHosts: ['codinggroups.org', 'www.codinggroups.org'],
+  },
   build: {
     cssCodeSplit: true,
     target: 'es2020',
